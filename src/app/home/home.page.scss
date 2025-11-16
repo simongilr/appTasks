@@ -1,27 +1,134 @@
-#container {
-  text-align: center;
+.segment-wrapper {
+  padding: 10px 12px;
+}
 
+ion-segment {
+  background: #f7f7fb;
+  border-radius: 14px;
+  padding: 6px;
+}
+
+ion-segment-button {
+  --indicator-color: transparent !important;
+  --background-checked: #e3e0ff; /* pastel lila */
+  --background: transparent;
+  --color-checked: #4a43c4;
+  --color: #6d6d6d;
+
+  border-radius: 12px !important;
+  padding: 6px 10px !important;
+  min-height: 38px;
+}
+
+.chip-container {
+  display: flex;
+  align-items: center;
+  position: relative; /* referencia para la X */
+}
+
+.chip-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 24px; /* espacio para la X */
+  cursor: pointer; /* hace clicable todo el texto */
+}
+
+.chip-close {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
+  right: 4px; /* separa la X del borde */
   font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+  color: var(--ion-color-danger);
+  cursor: pointer;
 }
 
-#container a {
-  text-decoration: none;
+
+
+
+.categories-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* espacio entre segmento y botón */
+  padding: 8px 16px;
 }
+
+.chip-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none; /* para que el click no rompa el segmento */
+}
+
+.chip-text {
+  pointer-events: auto; /* permite cambiar la categoría al click */
+}
+
+.chip-close {
+  pointer-events: auto; /* permite eliminar la categoría */
+  font-size: 16px;
+  color: var(--ion-color-danger);
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.add-category-btn {
+  flex-shrink: 0; /* evita que el botón se comprima */
+}
+
+.chip-add {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px; /* mismo padding que los segmentos */
+  border-radius: 12px;
+  background: #e3e0ff; 
+  color: #4a43c4; 
+  font-size: 0.875rem; /* 14px aprox, escalable */
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  min-height: 38px; /* mismo que ion-segment-button */
+  box-sizing: border-box;
+}
+
+.chip-add ion-icon {
+  font-size: 2.50rem; /* 20px aprox, relativo al texto */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-add-task {
+  --background: #e3e0ff;   /* mismo color que chip seleccionado */
+  --color: #4a43c4;        /* mismo color del texto de chip */
+  --box-shadow: none;       /* quita sombras por defecto */
+  --border-radius: 12px;    /* igual que chips */
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 12px;
+  min-height: 38px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-add-task:hover {
+  --background: #d6cfff;
+}
+
+.btn-add-task:active {
+  --background: #cbbfff;
+}
+
+.category-badge {
+  background-color: #cbbfff; /* morado pastel */
+  color: white;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 6px;
+  display: inline-block;
+}
+
+
