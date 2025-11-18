@@ -95,7 +95,7 @@ export class HomePage implements OnInit {
   
     this.newCategory = '';
   
-    await this.loadCategories(); // refresca la lista
+    await this.loadCategories(); 
   }
   
 
@@ -159,13 +159,13 @@ export class HomePage implements OnInit {
             const name = data.name?.trim();
   
             if (!name) {
-              return false; // ❌ no cerrar el alert
+              return false; 
             }
   
             await this.categoryService.addCategory(name);
             await this.loadCategories();
   
-            return true; // ✔️ cerrar alert
+            return true; 
           }
         }
       ]
@@ -221,7 +221,7 @@ export class HomePage implements OnInit {
           text: 'Seleccionar',
           handler: (selectedId) => {
             task.categoryId = selectedId;
-            this.taskService.updateTaskCategory(task); // Método que actualiza en tu backend/firestore
+            this.taskService.updateTaskCategory(task); 
           }
         }
       ]

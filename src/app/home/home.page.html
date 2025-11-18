@@ -1,111 +1,99 @@
 <ion-header>
-  <ion-toolbar color="dark">
-    <ion-title>
-      <ion-icon name="checkmark-done-sharp"></ion-icon>
-   </ion-title>
+	<ion-toolbar color="dark">
+		<ion-title>
+			<ion-icon name="checkmark-done-sharp"></ion-icon>
+		</ion-title>
 
-    <ion-buttons slot="end">
-      <ion-button (click)="showNewTaskInput = !showNewTaskInput">
-        CREAR TAREA
-        <ion-icon name="add-sharp"></ion-icon>      
-      </ion-button>
+		<ion-buttons slot="end">
+			<ion-button (click)="showNewTaskInput = !showNewTaskInput">
+				CREAR TAREA
+				<ion-icon name="add-sharp"></ion-icon>
+			</ion-button>
     </ion-buttons>
-  </ion-toolbar>
+    
+	</ion-toolbar>
 </ion-header>
+
 <ion-content>
-
-
-<!-- Categorías como chips modernas -->
-<!-- Contenedor del segmento y botón + -->
-<div class="categories-wrapper">
-
-  <ion-segment [(ngModel)]="selectedCategoryId" (ionChange)="filterByCategory(selectedCategoryId)" mode="md">
-    <ion-segment-button value="">
-      <span >Todas</span>
-    </ion-segment-button>
-
-    <ion-segment-button *ngFor="let cat of categories" [value]="cat.id">
-      <div>
-        <span class="chip-text">{{ cat.name }}</span>
-        <ion-icon class="chip-close" name="close-circle" (click)="deleteCategory(cat, $event)"></ion-icon>
-      </div>
-
-    </ion-segment-button>
-
-  </ion-segment>
-
-  <!-- Botón de agregar categoría como chip -->
-  <div class="chip-add" (click)="promptNewCategory()">
-    <ion-icon slot="start" name="add-circle-outline"></ion-icon>
-  </div>
-
-</div>
-
-
-
-  <!-- Input nueva tarea, se muestra al pulsar "Nueva" -->
-  <ion-item class="rounded-card" *ngIf="showNewTaskInput">
-    <ion-input [(ngModel)]="newTask" placeholder="Escribe tu tarea"></ion-input>
-
-    <ion-select [(ngModel)]="newTaskCategoryId" placeholder="Categoría">
-      <ion-select-option value="">Sin categoría</ion-select-option>
-
-      <ion-select-option *ngFor="let cat of categories" [value]="cat.id">
-        {{ cat.name }}
-      </ion-select-option>
-
-      <ion-item>
-        <ion-input
-          placeholder="Escribe nueva categoría"
-          [(ngModel)]="newCategory"
-        ></ion-input>
-      </ion-item>
-    </ion-select>
-
-    <ion-button class="btn-add-task" fill="solid" (click)="addTask()">
-      Añadir
-    </ion-button>
-  </ion-item>
-
-
-  <!-- Lista de tareas -->
- <!-- Lista de tareas -->
-<ion-list>
-  <!-- Skeleton loader mientras se cargan las tareas -->
-  <ng-container *ngIf="loading">
-    <ion-item *ngFor="let s of skeletonArray">
-      <ion-checkbox slot="start" disabled></ion-checkbox>
-      <ion-label>
-        <ion-skeleton-text animated style="width: 70%; height: 20px; margin-bottom: 6px;"></ion-skeleton-text>
-        <ion-skeleton-text animated style="width: 40px; height: 16px;"></ion-skeleton-text>
-      </ion-label>
-      <ion-button fill="clear" slot="end" disabled>
-        <ion-icon name="trash-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-  </ng-container>
-
-  <!-- Lista de tareas real -->
-  <ng-container *ngIf="!loading">
-    <ion-item class="task-item" *ngFor="let task of tasks">
-      <ion-checkbox slot="start" [checked]="task.completed" (ionChange)="toggleCompleted(task)"></ion-checkbox>
-      <ion-label class="ion-text-wrap">
-        <ion-input
-          class="task-title"
-          [value]="task.title"
-          (ionChange)="editTitle(task, $event.detail.value || '')">
-        </ion-input>
-        <ion-badge class="category-badge" (click)="openCategoryModal(task)">
-          {{ getCategoryName(task.categoryId) || 'Sin categoría' }}
-        </ion-badge>
-      </ion-label>
-      <ion-button fill="clear" color="danger" slot="end" (click)="deleteTask(task)">
-        <ion-icon name="trash-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-  </ng-container>
-</ion-list>
-
   
+	<!-- Categorías como chips modernas -->
+	<div class="categories-wrapper">
+
+		<ion-segment [(ngModel)]="selectedCategoryId" (ionChange)="filterByCategory(selectedCategoryId)" mode="md">
+			<ion-segment-button value="">
+				<span>Todas</span>
+			</ion-segment-button>
+
+			<ion-segment-button *ngFor="let cat of categories" [value]="cat.id">
+				<div>
+					<span class="chip-text">{{ cat.name }}</span>
+					<ion-icon class="chip-close" name="close-circle" (click)="deleteCategory(cat, $event)"></ion-icon>
+				</div>
+
+			</ion-segment-button>
+
+		</ion-segment>
+
+		<!-- Botón de agregar categoría como chip -->
+		<div class="chip-add" (click)="promptNewCategory()">
+			<ion-icon slot="start" name="add-circle-outline"></ion-icon>
+		</div>
+
+	</div>
+
+	<!-- Input nueva tarea, se muestra al pulsar "Nueva" -->
+	<ion-item class="rounded-card" *ngIf="showNewTaskInput">
+		<ion-input [(ngModel)]="newTask" placeholder="Escribe tu tarea"></ion-input>
+
+		<ion-select [(ngModel)]="newTaskCategoryId" placeholder="Categoría">
+			<ion-select-option value="">Sin categoría</ion-select-option>
+
+			<ion-select-option *ngFor="let cat of categories" [value]="cat.id">
+				{{ cat.name }}
+			</ion-select-option>
+
+			<ion-item>
+				<ion-input placeholder="Escribe nueva categoría" [(ngModel)]="newCategory"></ion-input>
+			</ion-item>
+		</ion-select>
+
+		<ion-button class="btn-add-task" fill="solid" (click)="addTask()">
+			Añadir
+		</ion-button>
+	</ion-item>
+
+	<!-- Lista de tareas -->
+	<ion-list>
+		<!-- Skeleton loader mientras se cargan las tareas -->
+		<ng-container *ngIf="loading">
+			<ion-item *ngFor="let s of skeletonArray">
+				<ion-checkbox slot="start" disabled></ion-checkbox>
+				<ion-label>
+					<ion-skeleton-text animated style="width: 70%; height: 20px; margin-bottom: 6px;"></ion-skeleton-text>
+					<ion-skeleton-text animated style="width: 40px; height: 16px;"></ion-skeleton-text>
+				</ion-label>
+				<ion-button fill="clear" slot="end" disabled>
+					<ion-icon name="trash-outline"></ion-icon>
+				</ion-button>
+			</ion-item>
+		</ng-container>
+
+		<!-- Lista de tareas real -->
+		<ng-container *ngIf="!loading">
+			<ion-item class="task-item" *ngFor="let task of tasks">
+				<ion-checkbox slot="start" [checked]="task.completed" (ionChange)="toggleCompleted(task)"></ion-checkbox>
+				<ion-label class="ion-text-wrap">
+					<ion-input class="task-title" [value]="task.title" (ionChange)="editTitle(task, $event.detail.value || '')">
+					</ion-input>
+					<ion-badge class="category-badge" (click)="openCategoryModal(task)">
+						{{ getCategoryName(task.categoryId) || 'Sin categoría' }}
+					</ion-badge>
+				</ion-label>
+				<ion-button fill="clear" color="danger" slot="end" (click)="deleteTask(task)">
+					<ion-icon name="trash-outline"></ion-icon>
+				</ion-button>
+			</ion-item>
+		</ng-container>
+	</ion-list>
 
 </ion-content>

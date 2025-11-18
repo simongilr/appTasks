@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">miApp</string>
+    <string name="title_activity_main">miApp</string>
+    <string name="package_name">co.mi.app</string>
+    <string name="custom_url_scheme">co.mi.app</string>
+</resources>

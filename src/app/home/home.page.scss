@@ -10,7 +10,7 @@ ion-segment {
 
 ion-segment-button {
   --indicator-color: transparent !important;
-  --background-checked: #e3e0ff; /* pastel lila */
+  --background-checked: #e3e0ff; 
   --background: transparent;
   --color-checked: #4a43c4;
   --color: #6d6d6d;
@@ -23,7 +23,8 @@ ion-segment-button {
 .chip-container {
   display: flex;
   align-items: center;
-  position: relative; /* referencia para la X */
+  position: relative; 
+  pointer-events: none;
 }
 
 .chip-text {
@@ -31,25 +32,22 @@ ion-segment-button {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding-right: 24px; /* espacio para la X */
-  cursor: pointer; /* hace clicable todo el texto */
+  padding-right: 24px; 
+  cursor: pointer; 
 }
 
 .chip-close {
   position: absolute;
-  right: 4px; /* separa la X del borde */
+  right: 4px; 
   font-size: 16px;
   color: var(--ion-color-danger);
   cursor: pointer;
 }
 
-
-
-
 .categories-wrapper {
   display: flex;
   align-items: center;
-  gap: 8px; /* espacio entre segmento y botón */
+  gap: 8px; 
   padding: 8px 16px;
 }
 
@@ -57,15 +55,15 @@ ion-segment-button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  pointer-events: none; /* para que el click no rompa el segmento */
+  pointer-events: none; 
 }
 
 .chip-text {
-  pointer-events: auto; /* permite cambiar la categoría al click */
+  pointer-events: auto; 
 }
 
 .chip-close {
-  pointer-events: auto; /* permite eliminar la categoría */
+  pointer-events: auto; 
   font-size: 16px;
   color: var(--ion-color-danger);
   margin-left: 4px;
@@ -73,37 +71,37 @@ ion-segment-button {
 }
 
 .add-category-btn {
-  flex-shrink: 0; /* evita que el botón se comprima */
+  flex-shrink: 0;
 }
 
 .chip-add {
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 6px 10px; /* mismo padding que los segmentos */
+  padding: 6px 10px; 
   border-radius: 12px;
   background: #e3e0ff; 
   color: #4a43c4; 
-  font-size: 0.875rem; /* 14px aprox, escalable */
+  font-size: 0.875rem; 
   font-weight: 500;
   cursor: pointer;
   user-select: none;
-  min-height: 38px; /* mismo que ion-segment-button */
+  min-height: 38px; 
   box-sizing: border-box;
 }
 
 .chip-add ion-icon {
-  font-size: 2.50rem; /* 20px aprox, relativo al texto */
+  font-size: 2.50rem; 
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
 .btn-add-task {
-  --background: #e3e0ff;   /* mismo color que chip seleccionado */
-  --color: #4a43c4;        /* mismo color del texto de chip */
-  --box-shadow: none;       /* quita sombras por defecto */
-  --border-radius: 12px;    /* igual que chips */
+  --background: #e3e0ff;   
+  --color: #4a43c4;        
+  --box-shadow: none;       
+  --border-radius: 12px;    
   font-size: 14px;
   font-weight: 500;
   padding: 6px 12px;
@@ -121,7 +119,7 @@ ion-segment-button {
 }
 
 .category-badge {
-  background-color: #cbbfff; /* morado pastel */
+  background-color: #cbbfff; 
   color: white;
   font-size: 13px;
   padding: 4px 10px;
